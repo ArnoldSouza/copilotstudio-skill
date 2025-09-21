@@ -14,3 +14,4 @@ terraform.tfvars
 # Segredos exportados pelo Terraform
 secrets/
 *.tfplan
+**/*.Identifier
