@@ -210,4 +210,4 @@ __marimo__/
 cli_commands.txt
 public/manifest.json
 # Ignorar arquivos :Zone.Identifier
-**/*.Identifier
+**/*.Identifiertfplan
