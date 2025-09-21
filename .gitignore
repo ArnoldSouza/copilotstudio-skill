@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+cli_commands.txt
+public/manifest.json
+# Ignorar arquivos :Zone.Identifier
+**/*.Identifier

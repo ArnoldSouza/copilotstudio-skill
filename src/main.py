@@ -17,8 +17,19 @@ from microsoft_agents.hosting.aiohttp import (
     CloudAdapter,
 )
 from aiohttp.web import Request, Response, Application, run_app, static
+from aiohttp import web
 
 from .agent import AGENT_APP, CONNECTION_MANAGER
+
+
+async def init_func():
+    app = web.Application()
+    # aqui você adiciona rotas
+    app.router.add_get("/", lambda request: web.Response(text="Hello World"))
+    return app
+
+async def healthz(req: Request) -> Response:
+    return Response(text="ok")
 
 
 async def entry_point(req: Request) -> Response:
@@ -33,6 +44,7 @@ async def entry_point(req: Request) -> Response:
 
 APP_WRAPPER = Application()
 APP_WRAPPER.add_routes([static("/public", "./public")])
+APP_WRAPPER.router.add_get("/healthz", healthz)
 
 APP = Application(middlewares=[jwt_authorization_middleware])
 APP.router.add_post("/messages", entry_point)
@@ -44,6 +56,7 @@ APP["agent_app"] = AGENT_APP
 APP["adapter"] = AGENT_APP.adapter
 
 try:
-    run_app(APP_WRAPPER, host="localhost", port=environ.get("PORT", 3978))
+    port = int(environ.get("PORT", 3978))
+    run_app(APP_WRAPPER, host="0.0.0.0", port=port)
 except Exception as error:
     raise error
