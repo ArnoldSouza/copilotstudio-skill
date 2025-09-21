@@ -3,7 +3,9 @@
 
 from os import environ
 
+from pathlib import Path
 from dotenv import load_dotenv
+
 from microsoft_agents.hosting.core import (
     Authorization,
     AgentApplication,
@@ -15,7 +17,7 @@ from microsoft_agents.activity import load_configuration_from_env
 from microsoft_agents.hosting.aiohttp import CloudAdapter
 from microsoft_agents.authentication.msal import MsalConnectionManager
 
-load_dotenv()
+load_dotenv(dotenv_path=Path(__file__).resolve().parents[1] / ".env", override=True)
 agents_sdk_config = load_configuration_from_env(environ)
 
 VERSION = agents_sdk_config.get("version", "unknown")
