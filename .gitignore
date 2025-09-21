@@ -211,3 +211,4 @@ cli_commands.txt
 public/manifest.json
 # Ignorar arquivos :Zone.Identifier
 **/*.Identifiertfplan
+tfplan
