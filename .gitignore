@@ -8,3 +8,4 @@ __pycache__/
 cli_commands.txt
 infra/tfplan
 *:Zone.Identifier
+.azure
